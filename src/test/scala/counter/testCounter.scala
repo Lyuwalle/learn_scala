@@ -5,6 +5,7 @@ import chisel3._
 import chisel3.experimental.BundleLiterals._
 import chisel3.simulator.EphemeralSimulator._
 import org.scalatest.freespec.AnyFreeSpec
+//Matchers is a trait that provides assertion methods to check the results.
 import org.scalatest.matchers.must.Matchers
 
 import scala.util.Random
@@ -20,9 +21,6 @@ class testCounter extends AnyFreeSpec with Matchers {
             dut.io.c.poke(1.B)          // c=1,l=1, 此时正常计数
             for (i <- 0 until (1 << bitWidth)) {    //0-2^4-1
                 dut.io.y.expect(i.U)
-
-                println(dut.io.y)
-
                 dut.clock.step()        //every step move, the counter will add 1
             }
             println("Success")
