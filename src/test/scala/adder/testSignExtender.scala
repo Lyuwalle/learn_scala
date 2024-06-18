@@ -12,9 +12,10 @@ class testSignExtender extends AnyFreeSpec with Matchers {
     "SignExtender should extend correctly" in {
         simulate(new SignExtender(4, 5)) { dut =>
             // 7:0111, 8:1000
-            dut.io.in.poke(8.U)
+            dut.io.in.poke("b1000".U)
             // 7:00111, 8: 11000 = 24(unsigned int)
-            dut.io.out.expect(24.U)
+            // "b11000".U表示一个无符号整数，这个整数的二进制为11000
+            dut.io.out.expect("b11000".U)
             println("Success")
         }
     }
